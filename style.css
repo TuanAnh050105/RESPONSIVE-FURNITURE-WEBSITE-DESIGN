@@ -1,0 +1,673 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700&display=swap');
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;                   /* margin giúp tạo khoảng cách giữa các phần tử */
+    padding: 0;                  /* padding giúp tại khoảng cách bên trong */
+    box-sizing: border-box;      /* box-sizing xác định xem chiều rộng và chiều cao của phần tử có bao gồm padding và border hay không.*/
+    scroll-behavior: smooth;     /* scroll-behavior tạo hiệu ứng cuộn mượt mà khi người dùng nhấp vào các liên kết nội bộ */
+    scroll-padding-top: 2rem;    /* Tạo khoảng cách cho phần tử cuộn*/
+    list-style: none;            /* loại bỏ các biểu tượng*/
+    text-decoration: none;       /*  Loại bỏ kiểu trang trí văn bản*/
+}
+/* Variables */
+:root {
+    --main-color: #9b5c41;
+    --light-color: #e1b955;
+    --text-color: #2e2e2e;
+    --hover-color: hsl(18, 41%, 38%);
+    --bg-color: #fff;
+}
+/* Custom Scroll Bar */
+html::-webkit-scrollbar {
+    width: 0.5rem;                      /*Chiều rộng bằng một nửa kích thước font gốc*/
+    background: transparent;            /*  Nền trong suốt*/
+}
+html::-webkit-scrollbar-thumb {
+    border-radius: 4rem;                /* Tạo các góc tròn với bán kính 4rem*/
+    background: var(--main-color);
+}
+img {
+    width: 100%;                        /*Hình ảnh sẽ chiếm toàn bộ chiều rộng của phần tử cha*/
+}
+section{
+    padding: 4rem 0 3rem;                /*Padding trên, bên trái/bên phải, và dưới*/
+}
+body {
+    color: var(--text-color);
+}
+.container { 
+    max-width: 968px;   /* Chiều rộng tối đa */
+    margin: auto;       /* Căn giữa */
+    width: 100%;        /* Chiều rộng 100% của phần tử cha */
+}
+/* Button */
+.btn {
+    background: var(--main-color);
+    padding: 15px 24px;
+    color: var(--bg-color);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+}
+.btn:hover {
+    background: var(--hover-color);    /* màu nền*/
+    transition: 0.3s all linear;       /* hiệu ứng chuyển tiếp trong 0.3s */
+}
+/* Header */
+header {
+    position: fixed;                 /* Vị trí cố định */
+    top: 0;                          /* lề trên*/
+    left: 0;                         /* lề trái*/
+    width: 100%;                     /* chiều rộng 100%*/
+    z-index: 100;                    /* chỉ số z*/
+}
+header.shadow {
+    background: var(--bg-color);                         /* Màu nền từ biến */
+    box-shadow: 1px 4px 14px rgb(15 54 55 / 10%);      /* hiệu ứng bóng*/
+    transition: 0.3s;                                    /* hiệu ứng chuyển tiếp trong 3s*/
+}
+.nav {
+    display: flex;             /* sd flexbox*/
+    align-items: center;       /* Căn giữa theo chiều dọc */
+    justify-content: center;   /* Căn giữa theo chiều ngang */
+    padding: 12px 0;           /* padding trên và dưới*/
+}
+.logo {
+    font-size: 1.4rem;    /* kích thước chữ logo 1.4rem*/
+    font-weight: 700;     /* Đặt độ dày chữ là 700*/
+    color: var(--text-color);    /* thiết lập màu chữ cho logo*/
+    margin: 0 auto 0 24px;      /* căn lề*/
+}
+.logo span {
+    color: var(--main-color);    /* màu logo*/
+}
+.menu-icon {
+    display: grid;
+    row-gap: 5px;                        /* khoảng cách giữa các hàng trong lưới là 5 pixel*/
+    padding: 14px 12px;                  /* trên 14px trái và phải 12px*/
+    background: var(--main-color);       /* màu nền cho phần tử dựa trên biến CSS */
+    cursor: pointer;                     /* dặt chuột thành hình bàn tay */
+    z-index: 200;
+    transition: 0.3s;                    /* hiệu ứng chuyển tiếp trong 0.3s*/
+}
+.menu-icon div {
+    display: block;                     /*Thiết lập chế độ hiển thị cho các phần tử <div> bên trong*/
+    background: var(--bg-color);        /* đặt màu cho phần tử*/
+    height: 2px;                        /* chiều cao cho phần tử div*/
+    width: 25px;                        /* chiều rộng cho phần tử div*/
+    transition: 0.3s;                   /* hiệu ứng chuyển tiếp trong 0.3s*/
+}
+.move .line1 {
+    transform: rotate(45deg) translate(5px, 5px);   /* xoay menu theo kim đồng hồ 45 độ*/
+}
+.move .line2 {
+    opacity: 0;    /* ẩn đi*/
+}
+.move .line3 {     
+    transform: rotate(-45deg) translate(5px, -5px);  /*xoay menu ngược kim đồng hồ 45 độ*/
+}
+.navbar {
+    position: fixed; 
+    left: 0;         /*Đặt vị trí bên trái của phần tử tại 0 pixel*/
+    top: 0;         /*Đặt vị trí bên trái của phần tử tại 0 pixel*/
+    width: 100%;     /* Đặt chiều rộng của phần tử là 100% */
+    height: 100vh;    /*  Đặt chiều cao của phần tử là 100% */
+    background: rgba(255, 255, 255, 0.74);  /*Đặt màu nền cho phần tử */
+    backdrop-filter: blur(4.5px);           /* Áp dụng hiệu ứng làm mờ */
+    z-index: 106;
+    display: none;                /* ẩn phàn tử */
+    justify-content: center;    /*Thiết lập căn giữa các phần tử con theo chiều ngang trong phần tử cha*/
+    align-items: center;        /*Thiết lập căn giữa các phần tử con theo chiều ngang trong phần tử cha*/
+    transition: all 0.3s ease;   /*chuyển tiếp cho tất cả các thuộc tính với thời gian 0.3*/
+}
+.navbar.active {
+    display: flex;  /* Thiết lập chế độ hiển thị cho phần tử l*/
+}
+.navbar a {
+    padding: 20px;      /*Thiết lập khoảng cách bên trong cho các phần tử liên kết*/
+    font-size: 1.6rem;   /* kích thức chữ 1.6rem*/
+    color: var(--text-color);   /* đặt màu chữ*/
+    font-weight: 500;           /*Đặt độ dày chữ là 500*/
+    transition: 0.2s all linear;   /*hiệu úng chuyển tiếp 0.2s*/
+}
+.navbar a:hover {
+    background: var(--main-color);      /* màu nền*/
+    font-size: 1.8rem;                  /* kích thước chữ 1.8rem*/
+    color: var(--bg-color);             
+}
+/* Nav Icons */
+.nav-icons {
+    display: flex;     /*Thiết lập chế độ hiển thị cho phần tử*/
+    column-gap: 1rem;   /*Đặt khoảng cách giữa các cột là 1 rem*/
+    z-index: 200;
+}
+.nav-icons .bx {
+    font-size: 1.1rem;     /* Đặt kích thước chữ cho các biểu tượng là 1.1 rem*/
+    color: var(--bg-color);   /* màu chữ*/
+    padding: 10px;            /* khoảng cách bên trong là 10px*/
+    background: var(--main-color); /*màu nền cho biểu tượng*/
+    border-radius: 0.5rem;         /* bo tròn các góc của phần tử là 0.5rem*/
+    cursor: pointer;             /* Đặt con trỏ chuột thành hình bàn tay*/
+}
+/* Cart */
+.cart {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.74);   /* màu nền*/
+    backdrop-filter: blur(4.5px);               /* làm mờ */
+    z-index: 106;                               
+    display: none;                               /*phần tử k hiển thị*/
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;     /*Thiết lập hiệu ứng chuyển tiếp cho tất cả các thuộc tính trong 0.3 giây với kiểu chuyển tiếp là "ease"*/
+}
+.cart.active {
+    display: flex;          /*Thiết lập chế độ hiển thị cho phần tử */
+}
+.cart-content {
+    display: flex;          /*Thiết lập chế độ hiển thị cho phần tử */
+    flex-direction: column; /* Đặt hướng của Flexbox là theo chiều dọc*/
+    max-width: 500px;       /*chiều rộng tối đa của phần tử là 500px*/
+    margin: auto;           /*căn giữa nó trong không gian chứa*/
+    width: 100%;            /*Đặt chiều rộng của phần tử là 100%*/
+    padding: 20px;          /* khoảng cách bên trong cho phần tử là 20 pixel*/
+    row-gap: 1rem;          /*khoảng cách giữa các hàng là 1rem*/
+}
+.cart-box {
+    display: flex;
+    justify-content: space-between;     /*Thiết lập cách căn chỉnh các phần tử con theo chiều ngang*/
+    align-items: center;     /* Thiết lập căn chỉnh các phần tử con theo chiều dọc*/
+}
+.cart-box img {
+    width: 100px;      /*đặt chiều rộng của hình ảnh bên trong là 100px*/
+}
+.cart-text {
+    display: grid;      
+}
+.cart-text h3 {
+    font-size: 1rem;   /* kích thứơc chữ cho h3 là 1rem*/
+}
+.cart-text span {
+    font-weight: 500;   /* độ dày của chữ cho phần tử span là 500*/
+}
+.cart-box .bx {
+    font-size: 20px;    /* kích thức chữ 20px*/
+    color: var(--text-color);   /* Đặt màu chữ cho các biểu tượng */
+}
+.cart-box .bx:hover {
+    color: var(--main-color);  /*di chuột qua các phần tử .bx, màu chữ sẽ chuyển sang giá trị màu */
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;   /*Thiết lập cách căn chỉnh các phần tử con theo chiều ngang*/
+    align-items: center;              /* Thiết lập căn chỉnh các phần tử con theo chiều dọc*/
+    margin-top: 1.5rem;               /* Thiết lập khoảng cách phía trên của phần tử là 1.5 rem.*/
+}
+
+.total h3 {
+    font-size: 1rem;    /*kích thước chữ cho h3 là 1rem*/
+}
+
+.total span {
+    font-weight: 500;   /* độ dày chữ cho span là 500*/
+}
+
+.cart-content .btn {
+    display: inline-flex;   /*Thiết lập chế độ hiển thị cho các phần tử có lớp */
+    justify-content: center;  /* Căn giữa các phần tử con bên trong phần tử */ 
+}
+/* Login Form */
+.login-form {
+    position: fixed;    /* thần tử sẻ k di chuyển khi cuộn*/
+    left: 0;            /* vị trí của phần tử*/
+    top: 0;             /* vị trí của phần tử*/
+    width: 100%;        /* vị trí của phần tử*/
+    height: 100vh;      /* vị trí của phần tử*/
+    background: rgba(255, 255, 255, 0.74);      /*màu nền của phần tử*/
+    backdrop-filter: blur(4.5px);                 /*  làm mờ cho phần nền phía sau phần tử, với độ mờ là 4.5px.*/
+    z-index: 106;         /* thứ tự xếp chồng của phần tử*/
+    display: none;
+    justify-content: center;   /*các phần tử con sẽ được căn giữa theo chiều ngang và chiều dọc.*/
+    align-items: center;       /*các phần tử con sẽ được căn giữa theo chiều ngang và chiều dọc.*/
+    transition: 0.3s ease;     /* hiệu ứng chuyển tiếp trong 0.3s theo kiểu ease*/
+}
+.login-form.active {
+    display: flex;
+}
+.login-form form {
+    max-width: 300px;   /*Chiều rộng tối đa của phần tử form là 300px*/
+    width: 100%;        /*Chiều rộng của phần tử form sẽ chiếm toàn bộ chiều rộng của phần tử cha*/
+    margin: auto;       /*giúp căn giữa phần tử form theo chiều ngang trong phần tử cha*/
+    display: grid;      /*cho phép bạn sắp xếp các phần tử con theo hàng và cột*/
+    text-align: center; /*văn bản bên trong sẽ được căn giữa theo chiều ngang.*/
+    row-gap: 1rem;      /*Tạo khoảng cách giữa các hàng của lưới*/
+    padding: 10px;      /* khoảng cách giữ nội dung bên trong là 10px*/
+}
+.login-form form h2 {   
+    font-size: 1.4rem;  /*kích thước chữ là 1.4rem*/
+    font-weight: 600;   /* độ đậm của chữ là 600*/
+}
+.login-form form input {
+    width: 100%;                             /* chiều rộng của trường nhập liệu là 100%*/
+    outline: none;                           /*loại bỏ viền của trường nhập liệu khi được chọn*/
+    border: none;                            /*Loại bỏ mọi viền mặc định của trường nhập liệu*/
+    font-size: 0.9rem;                       /* kích thước phông chữ cho văn bản nhập vào trường là 0.9rem*/
+    padding: 14px;                           /*Thêm khoảng cách bên trong trường nhập liệu 14px*/
+    background: var(--bg-color);             /*màu nên cho background*/
+    border: 2px solid var(--main-color);     /*Thiết lập viền cho trường nhập liệu với độ dày 2px, màu --maim-color--*/
+    border-radius: 0.5rem;                   /*Thiết lập bo tròn các góc của trường nhập liệu với bán kính 0.5rem*/
+}
+.login-form form input::placeholder {
+    font-size: 0.9rem;          /*Đặt kích thước phông chữ cho văn bản placeholder là 0.9rem*/
+    font-weight: 400;           /*độ đậm của phông chữ cho nội dung placeholder là 400*/
+}
+.login-form form a {
+    font-size: 0.9rem;          /*kích thước phông chữ là 0.9rem*/
+    font-weight: 500;           /*độ đậm của chữ là 500*/
+    color: var(--text-color);   /*màu sắc cho văn bản liên kết bằng cách sử dụng biến CSS*/
+    text-align: right;          /*căn lề bên phải cho văn bản*/
+}
+.login-form form a:hover {
+    color: var(--main-color);   /*đổi màu sắc của văn bản liên kết khi di chuột qua*/
+}
+.login-form form .btn {
+    border: none;                   /*Loại bỏ viền mặc định của nút.*/
+    background: var(--main-color);  /*Thiết lập màu nền cho nút bằng biến CSS*/
+}
+.login-form form .btn:hover {
+    background: var(--hover-color); /*đổi màu nền của nút khi di chuột qua*/
+}
+/* Home */
+.home {
+    position: relative;     /*thiết lập vị trí tương đối cho phần tử*/
+    min-height: 640px;      /*chiều cao tối đa của phần tử*/
+    display: grid;          /*bố trí các phần tử con theo hàng và cột.*/
+    grid-template-columns: repeat(2, 1fr);      /*hai cột với chiều rộng bằng nhau (1fr - một phần của không gian có sẵn).*/
+    align-items: center;        /*Căn giữa các phần tử con theo chiều dọc trong lưới.*/
+    gap: 1.5rem;             /*Tạo khoảng cách 1.5rem giữa các hàng và cột trong lưới*/
+}
+.home-text h1 {
+    font-size: 2rem;        /* kích thước phông chữ cho thẻ <h1> là 2rem*/
+}
+.home-text h1 span {
+    color: var(--main-color);  /*Định dạng cho thẻ <span> bên trong <h1>, thay đổi màu sắc thành var--main-color-*/
+}
+.home-text p {
+    margin: 1rem 0 1.8rem;      /*khoảng cách (margin) cho thẻ <p>, với 1rem ở trên và dưới, và 1.8rem ở dưới cùng*/
+}
+.home-img img {
+    width: 400px;           /*chiều rộng cho hình ảnh là 400px*/
+}
+.home-img{
+    position: relative;     /*Thiết lập vị trí tương đối cho phần tử chứa hình ảnh*/
+}
+.home-img::after {
+    content: "";            /*Thiết lập nội dung cho phần tử ảo*/
+    height: 215px;          /*chiều cao phần tử ảo*/
+    width: 490px;           /*chiều rộng cho phần tử ảo*/
+    background: var(--light-color);     /*Thiết lập màu nền cho phần tử ảo bằng biến CSS */
+    position: absolute;      /*Đặt phần tử ảo ở vị trí tuyệt đối, căn chỉnh theo phần tử cha (.home-img)*/
+    bottom: 0px;            /*Đặt vị trí của phần tử ảo ở phía dưới cùng bên phải của phần tử cha*/
+    right: 20px;            /*Đặt vị trí của phần tử ảo ở phía dưới cùng bên phải của phần tử cha*/
+    border-radius: 50%;     /*Bo tròn các góc của phần tử ảo, tạo thành một hình tròn*/
+    z-index: -1;  /*Đặt thứ tự hiển thị của phần tử ảo phía sau các phần tử khác, để không che khuất nội dung chính*/
+}
+.heading {
+    display: flex;          /*Thiết lập mô hình bố trí flexbox cho phần tử*/
+    justify-content: space-between; /*Căn giữa các phần tử con trong hàng, tạo khoảng cách đều giữa các phần tử*/
+    align-items: center;     /*Căn giữa các phần tử con theo chiều dọc*/
+    margin-bottom: 2rem;     /*Tạo khoảng cách 2rem phía dưới phần tử .heading, giúp tách biệt nó với nội dung phía dưới*/
+}
+.heading h2 {
+    font-size: 1.4rem;      /*kích thước phông chữ cho tiêu đề là 1.4rem*/
+}
+.heading a {
+    font-size: 1.1rem;      /*kích thước phông chữ cho liên kết là 1.1rem*/
+    font-weight: 400;       /*độ đậm của phông chữ cho liên kết là 400*/
+    color: var(--text-color);  /*Thiết lập màu sắc cho văn bản liên kết bằng cách sử dụng biến CSS*/
+    border-bottom: 2px solid var(--text-color); /*Thêm một viền dưới (bottom border) dày 2px và màu sắc tương ứng với màu văn bản, tạo hiệu ứng gạch chân cho liên kết*/
+}
+.heading a:hover {
+    color: var(--main-color);   /*Thay đổi màu sắc của văn bản liên kết*/
+    border-bottom: 2px solid var(--main-color); /*Thay đổi màu sắc của viền dưới thành--main-color khi di chuột qua*/
+}
+/* Popular */
+.popular-content,
+.products-content {
+    display: grid;  /*cho phép các phần tử con bên trong được sắp xếp theo hàng và cột*/
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));   /*định nghĩa cách các cột trong lưới được cấu hình*/
+    gap: 2rem;      /* khoảng cách giữa các hàng và cột trong lưới là 2rem*/
+}
+.box {
+    padding: 15px;              /* khoảng cách 15px bên trong phần tử*/
+    background: #e0e0e0;      /*màu nền cho phần tử*/
+    border-radius: 1rem;        /*Bo tròn các góc của phần tử với bán kính 1rem*/
+    border: 1px solid #ccc;   /*Thêm một viền dày 1px và kiểu solid với màu xám nhạt*/
+    display: grid;              /* các phần tử con bên trong được sắp xếp theo hàng và cột*/
+    row-gap: 1rem;              /*Tạo khoảng cách giữa các hàng trong lưới là 1rem*/
+}
+.box img {
+    width: 200px;               /*chiều rộng của hình ảnh 200px*/
+    height: 200px;              /*chiều cao của hình ảnh 200px*/
+    object-fit: contain;        /*Thiết lập cách hình ảnh sẽ được hiển thị bên trong khung*/
+    object-position: center;    /*Xác định vị trí của hình ảnh bên trong khung*/
+}
+.box-text {
+    display: flex;                   /*Thiết lập mô hình bố trí flexbox cho phần tử */
+    align-items: center;             /*Căn giữa các phần tử con theo chiều dọc*/
+    justify-content: space-between;  /*Căn chỉnh các phần tử con trong hàng, tạo khoảng cách đều giữa chúng*/
+    width: 100%;                     /*chiều rộng của phần tử .box-text là 100%*/
+    background: var(--bg-color);     /* Thiết lập màu nền cho phần tử bằng biến CSS*/
+    padding: 10px;                   /* khoảng cách 10px bên trong phần tử .box-text*/
+    border-radius: 0.5rem;           /*Bo tròn các góc của phần tử với bán kính 0.5rem*/
+}
+.title-price h3 {
+    font-size: 1rem;                 /*kích thước phông chữ cho tiêu đề là 1rem*/
+    font-weight: 600;                /*độ đậm của phông chữ cho tiêu đề là 600*/
+}
+.title-price span {
+    font-weight: 500;                /*độ đậm của phông chữ cho văn bản trong thẻ <span> là 500*/
+}
+.box-text .bx {
+    padding: 10px;                  /* khoảng cách 10px bên trong phần tử .bx*/
+    font-size: 20px;                /* kích thước phông chữ cho văn bản trong phần tử .bx là 20px*/
+    background: var(--text-color);  /*màu nền cho phần tử .bx bằng biến CSS */
+    color: var(--bg-color);         /*màu văn bản cho phần tử .bx bằng biến CSS*/
+    border-radius: 5rem;            /*Bo tròn các góc của phần tử với bán kính 5rem*/
+}
+.box-text .bx:hover {
+    background: var(--main-color);   /*di chuột qua, màu nền của phần tử sẽ thay đổi*/
+}
+/* About */
+.about {
+    display: grid;      /*các phần tử con bên trong được sắp xếp theo hàng và cột*/
+    grid-template-columns: repeat(2, 1fr);  /*tạo ra 2 cột, mỗi cột chiếm 1 phần của không gian có sẵn*/
+    align-items: center;    /*Căn giữa các phần tử con theo chiều dọc trong mỗi hàng, đảm bảo rằng chúng đều nằm ở giữa*/
+    gap: 1.5rem;        /*Tạo khoảng cách 1.5rem giữa các hàng và cột trong lưới*/
+}
+.about-img img {
+    width: 400px;       /*chiều rộng của hình ảnh là 4px*/
+}
+.about-img {
+    position: relative; /*Thiết lập vị trí tương đối cho phần tử */
+}
+.about-img::after {
+    content: '';        /*Thuộc tính này yêu cầu pseudo-element ::after phải có nội dung*/
+    height: 340px;      /*Đặt chiều cao của pseudo-element là 340px*/
+    width: 232px;       /*Đặt chiều rộng của pseudo-element là 232px*/
+    background: var(--light-color);     /*Thiết lập màu nền cho pseudo-element bằng biến CSS*/
+    position: absolute; /*Đặt vị trí của pseudo-element ở chế độ tuyệt đối*/
+    bottom: 25px;       /*Định vị pseudo-element cách đáy của phần tử cha .about-img là 25px*/
+    left: 20px;         /*Định vị pseudo-element cách bên trái của phần tử cha .about-img là 20px*/
+    border-radius: 0.5rem;      /*Bo tròn các góc của pseudo-element với bán kính 0.5rem*/
+    z-index: -1;        /*giá trị -1, pseudo-element sẽ nằm dưới tất cả các phần tử khác trong cùng một ngữ cảnh xếp chồng*/
+}
+.about-text h2 {
+    font-size: 1.4rem;  /* kích thước phông chữ cho tiêu đề là 1.4rem*/
+}
+.about-text p {
+    text-align: justify; /* văn bản sẽ được căn đều cả hai bên*/
+    margin: 1rem 0;      /*Thêm khoảng cách 1rem ở trên và dưới đoạn văn*/
+}
+.features {
+    display: grid;       /*các phần tử con bên trong được sắp xếp theo hàng và cột*/
+    row-gap: 0.8rem;     /*Tạo khoảng cách 0.8rem giữa các hàng trong lưới*/
+}
+.features i {
+    display: flex;         /*Thiết lập mô hình bố trí flexbox cho phần tử <i>*/
+    align-items: center;   /*Căn giữa các phần tử con theo chiều dọc trong phần tử <i>*/
+    font-size: 18px;       /*kích thước phông chữ cho các biểu tượng là 18px*/
+    color: var(--main-color);  /*Thiết lập màu sắc cho các biểu tượng bằng biến CSS*/
+}
+.features span {
+    margin-left: 1rem;          /* khoảng cách bên trái cho các phần tử <span> là 1rem*/
+    color: var(--text-color);   /*Thiết lập màu văn bản cho các phần tử <span> bằng biến CSS*/
+    font-size: 0.9rem;          /*Đặt kích thước phông chữ cho các phần tử <span> là 0.9rem*/
+}
+.products-content .box-text {
+    background: var(--text-color);  /*màu cho phần tử*/
+}
+.products-content .box-text h3 {
+    color: var(--bg-color);         /*Thiết lập màu văn bản cho tiêu đề */
+}
+.products-content .box-text span {
+    color: var(--bg-color);         /*Thiết lập màu văn bản cho các phần tử*/
+}
+.products-content .box-text .bx {
+    background: var(--main-color);  /*Thiết lập màu nền cho phần tử .bx*/
+}
+.products-content .box-text .bx:hover{
+    background: var(--hover-color); /*di chuột qua, màu nền của phần tử sẽ thay đổi*/
+}
+/* NewsLetter */
+.newsletter {
+    background: #f1f1f1;     /*màu nền cho phần tử*/
+}
+.newsletter-content {
+    display: grid;             /*sắp xếp các phần tử con theo hàng và cột*/
+    grid-template-columns: repeat(2, 1fr);  /*ra 2 cột, mỗi cột chiếm 1 phần của không gian có sẵn*/
+    align-items: center;         /* Căn giữa các phần tử con theo chiều dọc trong mỗi hàng, đảm bảo rằng chúng đều nằm ở giữa*/
+    gap: 1.5rem;               /*khoảng cách 1.5rem giữa các hàng và cột trong lưới*/ 
+}
+.newsletter-text h2 {
+    font-size: 1.4rem;      /*Đặt kích thước phông chữ cho tiêu đề là 1.4rem*/
+    margin-bottom: 1rem;    /* khoảng cách 1rem ở dưới tiêu đề*/
+}
+.newsletter-content form {
+    display: grid;          /*sắp xếp các phần tử con theo hàng và cột*/
+    grid-template-columns: 1fr 0.4fr;   /*tạo ra 2 cột: cột đầu tiên sẽ chiếm 1 phần không gian và cột thứ hai sẽ chiếm 0.4 phần không gian*/
+    column-gap: 1rem;       /*khoảng cách 1rem giữa các cột trong lưới*/
+}
+.newsletter-content form input {
+    border: none;           /*Bỏ viền mặc định của trường nhập liệu*/
+    padding: 15px;          /*Thêm khoảng cách 15px bên trong trường nhập liệu*/
+    outline-color: var(--main-color);   /*Thiết lập màu sắc của outline*/
+    border-radius: 0.5rem;  /*Bo tròn các góc của trường nhập liệu với bán kính 0.5rem*/
+    font-size: 1rem;        /*kích thước phông chữ cho văn bản trong trường nhập liệu là 1rem*/
+    color: var(--text-color);   /*thiết lập màu cho trường nhập liệu*/
+}
+.newsletter-content form input ::placeholder {
+    font-size: 1rem;         /*Đặt kích thước phông chữ cho placeholder là 1rem*/
+}
+.newsletter-content form .btn {
+    text-transform: uppercase;  /*Biến đổi tất cả văn bản trong nút thành chữ in hoa*/
+    color: var(--bg-color);     /*Thiết lập màu văn bản cho nút bằng biến CSS */
+    cursor: pointer;            /*đổi con trỏ chuột thành biểu tượng tay khi di chuột qua nút*/
+}
+/* Footer */
+.footer {
+    display: grid;  /* cho phép sắp xếp các phần tử con theo hàng và cột*/
+    grid-template-columns: repeat(auto-fit, minmax(220px, auto));   /*dài dòng khó hiểu*/
+    gap: 1rem;      /* khoảng cách 1rem giữa các cột và hàng trong lưới*/
+}
+.footer-box {
+    display: flex;  /*Thiết lập mô hình bố trí flexbox cho các phần tử bên trong .footer-box*/
+    flex-direction: column;   /*Sắp xếp các phần tử con theo chiều dọc*/
+}
+.footer-box h3 {
+    font-size: 1.1rem;    /*Đặt kích thước phông chữ cho tiêu đề là 1.1rem*/
+    font-weight: 600;     /*độ đậm cho phông chữ là 600*/
+    margin-bottom: 1rem;  /*thêm khoảng cách 1rem dưới tiêu đề*/
+}
+.footer-box a {
+    color: var(--text-color);   /*Thiết lập màu sắc cho văn bản của liên kết bằng biến CSS */
+    margin-bottom: 0.5rem;      /*Thêm khoảng cách 0.5rem dưới mỗi liên kết*/
+}
+.footer-box a:hover {
+    color: var(--main-color);   /*di chuột qua, màu văn bản của liên kết sẽ thay đổi */
+}
+.social {
+    display: flex;  /*Thiết lập mô hình bố trí flexbox cho phần tử, cho phép các biểu tượng mạng xã hội được sắp xếp theo hàng ngang*/
+    align-items: center; /*Căn giữa các phần tử con theo chiều dọc trong container, đảm bảo rằng chúng đều nằm ở giữa hàng*/
+    column-gap: 1rem;   /*Tạo khoảng cách 1rem giữa các phần tử con trong hàng*/
+}
+.social .bx {
+    padding: 8px;     /*Thêm khoảng cách 8px bên trong các biểu tượng*/
+    background: var(--main-color);   /*Thiết lập màu nền cho các phần tử .bx*/
+    font-size: 20px;    /*kích thước phông chữ cho nội dung bên trong các phần tử .bx là 20px*/
+    border-radius: 0.5rem;  /*Bo tròn các góc của các phần tử .bx với bán kính 0.5rem*/
+    color: var(--bg-color); /*màu văn bản cho nội dung bên trong các phần tử .bx*/
+}
+.social .bx:hover {
+    background: var(--hover-color);    /*di chuột qua, màu nền của phần tử sẽ thay đổi */
+    transition: 0.3s all linear;    /* hiệu ứng chuyển đổi cho tất cả các thuộc tính trong 0.3s*/
+}
+/* Copyright */
+.copyright {
+    text-align: center;   /*Căn giữa nội dung bên trong phần tử*/
+    padding: 30px;      /*Thêm khoảng cách 30px ở tất cả các cạnh của phần tử*/
+}
+/* Scroll Top */
+.scroll-top {
+    position: fixed;    /*đặt vị trí cố định, nó sẽ k bị cuộn theo nội dung trang*/
+    bottom: 1.5rem;     /*Đặt nút cách dưới cùng của cửa sổ trình duyệt 1.5rem*/
+    right: -100%;       /*Vị trí bên phải được thiết lập ngoài vùng nhìn thấy (ra ngoài màn hình)*/
+    padding: 10px;      /*Thêm khoảng cách 10px bên trong nút*/
+    font-size: 20px;    /*Đặt kích thước phông chữ cho văn bản trong nút là 20px*/
+    border-radius: 0.5rem;  /*Bo tròn các góc của nút với bán kính 0.5rem*/
+    background: var(--main-color);  /*màu nền cho nút bằng biến CSS */
+    color: var(--bg-color);         /* màu văn bản cho nút bằng biến CSS */
+    display: flex;          /*Thiết lập mô hình bố trí flexbox cho nút, cho phép căn giữa nội dung bên trong*/
+    align-items: center;    /*Căn giữa nội dung theo chiều dọc và chiều ngang*/
+    justify-content: center; /*Căn giữa nội dung theo chiều dọc và chiều ngang*/
+    opacity: 80%;           /*Thiết lập độ mờ cho nút là 80%*/
+}
+.scroll-top:hover {
+    background: var(--hover-color); /* di chuột qua, màu nền của nút sẽ thay đổi*/
+    opacity: 100%;              /*Độ mờ sẽ giảm xuống còn 100% khi di chuột qua*/
+    transition: 0.3s all linear;  /*chuyển đổi cho tất cả các thuộc tính trong 0.3s*/
+}
+.scroll-top.active {
+    right: 1.5rem;     /*Khi có class active, nút sẽ di chuyển vào vị trí 1.5rem từ bên phải màn hình*/
+    transition: 0.3s;  /*hiệu ứng chuyển đổi cho thuộc tính right trong 0.3s*/
+}
+/* Break Points / Making Responsive */
+/* For Large Devices */
+@media (max-width:1020px){      /*Đây là một media query, cho phép áp dụng các kiểu CSS bên trong nó khi chiều rộng của cửa sổ trình duyệt nhỏ hơn hoặc bằng 1020px*/
+    .container {
+        margin: 0 auto;     /*khoảng cách bên trên và bên dưới là 0, trong khi khoảng cách bên trái và bên phải tự động*/
+        width: 90%;         /* chiều rộng của phần tử .container là 90% của chiều rộng của không gian chứa*/
+    }
+    .home-img::after {
+        height: 170px;      /*chiều cao của pseudo-element này là 170px*/
+        width: 450px;       /* chiều rộng của pseudo-element này là 450px*/
+    }
+}
+@media (max-width: 880px) {     /* áp dụng khi chiều rộng của cửa sổ trình duyệt nhỏ hơn hoặc bằng 880px*/
+    section {
+        padding: 3rem 0 2rem;   /*Thiết lập padding cho phần tử section, với khoảng cách 3rem ở trên, 0 ở hai bên, và 2rem ở dưới*/
+    }
+    .nav {
+        padding: 12px 0;    /*Thiết lập padding cho phần tử điều hướng là 12px ở trên và dưới*/
+    }
+    .home-text h1 {
+        font-size: 2rem;    /* kích thước phông chữ cho tiêu đề h1 trong phần tử .home-text là 2rem*/
+    }
+    .home-img img {
+        width: 100%;    /* chiều rộng của hình ảnh bên trong phần tử .home-img là 100%*/
+    }
+    .home-img::after {
+        width: 415px;  /*chiều rộng cho pseudo-element ::after là 415px*/
+        right: 10px;    /* khoảng cách từ bên phải là 10px, có thể điều chỉnh vị trí của pseudo-element này*/
+    }
+    .box {
+        display: flex;  /*Thiết lập mô hình bố trí flexbox cho phần tử .box*/
+        flex-direction: column; /*Sắp xếp các phần tử con theo chiều dọc*/
+        align-items: center;    /*cân giữa nội dung theo chiều ngang và dọc*/
+    }
+    .box img {
+        width: 180px;   /*chiều rộng của hình ảnh bên trong phần tử .box img là 180px*/
+        height: 200px;  /*chiều cao của hình ảnh là 200px*/
+    }
+    .about-img img {
+        width: 100%;   /*chiều rộng của hình ảnh bên trong phần tử .about-img img là tối đa*/
+    }
+}
+/* For Medium Devices */
+@media (max-width: 768px) {     /* áp dụng khi chiều rộng của cửa sổ trình duyệt nhỏ hơn hoặc bằng 768px*/
+    .menu-icon {
+        padding: 12px 10px;     /* thêm khoảng cách trên và dưới 12px, trái và phải 10px*/
+
+    }
+    .home-text p br {
+        display: contents;  /*phần tử <br> sẽ không tạo ra khối riêng và các phần tử con của nó sẽ được hiển thị như thể không có <br>*/
+    }
+    .home-img::after {
+        width: 345px;  /*chiều rộng cho ::after là 345px*/
+        right: 10px;    /*căn lề bên phải cho ::after là 10px*/
+    }
+    .about-img::after {
+        bottom: 15px;     /*đặt vị trí của ::after của phần tử class about-img cách đáy 15px*/
+    }
+}
+@media (max-width: 624px) {     /* áp dụng khi chiều rộng của cửa sổ trình duyệt nhỏ hơn hoặc bằng 642px*/
+    .navbar {
+        flex-direction: column;     /*sắp xếp các phần tử theo chiều dọc*/
+    }
+    .navbar a {
+        padding: 15px;      /*Thiết lập khoảng đệm cho các liên kết trong navbar*/
+        display: block;     /*chuyển đổi các liên kết thành khối*/
+    }
+    .home,
+    .about {
+        grid-template-columns: 1fr;     /*Thiết lập bố cục lưới cho các phần tử này với một cột duy nhất*/
+    }
+    .home-text, 
+    .about-img {
+        order: 2;    /*Đặt thứ tự hiển thị của các phần tử này thành 2*/
+    }
+    .home-img::after {
+        width: 100%;    /*chiều rộng của ::after cho phần tử có class home-img là 100% của phần tử chứa nó*/
+        right: 12px;    /*Đặt vị trí của pseudo-element này cách bên phải 12px*/
+    }
+    .about-img::after {
+        height: 90%;    /*chiều cao của pseudo-element ::after cho phần tử có class about-img là 90% của phần tử chứa nó*/
+    }
+    .newsletter-content {
+        grid-template-columns: 1fr; /*Thiết lập bố cục lưới cho phần tử này với một cột duy nhất, tương tự như .home và .about*/
+    }
+    .newsletter-content form {
+        grid-template-columns: 1fr; /*Đặt cho form trong phần tử newsletter-content cũng chỉ có một cột*/
+        row-gap: 1rem;       /*khoảng cách giữa các hàng trong lưới là 1rem*/
+    }
+}
+/* For Small Devices */
+@media (max-width: 360px) {     /* áp dụng khi chiều rộng của cửa sổ trình duyệt nhỏ hơn hoặc bằng 360px*/
+    .nav {
+        padding: 8px 0; /* thiết lập khoảng cách đệm cho phần tử nav, vs padding trên và dưới 8px, trái phải 0px*/
+    }
+    .menu-icon {
+        padding: 10px 8px; /*trên dưới 10px, trái phải 8px*/
+    }
+    .logo {
+        font-size: 1.2rem; /* phông chữ cho logo là 1.2rem*/
+        margin: 0px auto 0px 11px;  /*margin trên và dưới là 0px, trái là 11px, phải là tự đòng*/
+    }
+    .nav-icons .bx {
+        padding: 8px;   /* khoảng đệm cho các phần tử con có class bx trong phần tử có class nav-icons, với khoảng đệm đều là 8px*/
+    }
+    .home-text h1 {
+        font-size: 1.7rem;  /* kích thước chữ cho thẻ <h1> trong phần tử có class home-text là 1.7rem*/
+    }
+    p {
+        font-size: 0.875rem;    /* kích thước chữ cho tất cả các thẻ <p> là 0.875rem*/
+    }
+    .home-text p {
+        margin: 0.2rem 0 1.4rem;    /* lập margin cho các thẻ <p> trong phần tử có class home-text, với margin trên là 0.2rem, margin dưới là 1.4rem và margin trái, phải là 0*/
+    }
+    .heading h2,
+    .heading a {
+        font-size: 1rem;    /* kích thước chữ cho các thẻ <h2> và các thẻ <a> trong phần tử có class heading là 1rem*/
+    }
+    .about-text h2 {
+        font-size: 1.2rem;  /*lập kích thước chữ cho các thẻ <h2> trong phần tử có class about-text là 1.2rem*/
+    }
+    .about-text p {
+        margin: 0.8rem 0;   /* lập margin cho các thẻ <p> trong phần tử có class about-text, với margin trên và dưới là 0.8rem, và không có margin trái, phải*/
+    }
+}
